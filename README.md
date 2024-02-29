@@ -12,9 +12,10 @@ A sample N-layered .NET Core Project Demonstrating Clean Architecture and the Ge
 - Microsoft.EntityFrameworkCore.Design
 - Microsoft.EntityFrameworkCore.Tools
 - npgsql.EntityFrameworkCore.PostgreSQL
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore
 
 ### Web
-...
+- Microsoft.EntityFrameworkCore.Design
 
 ### UnitTests
 ...
@@ -27,4 +28,7 @@ Before running the following commands, ensure that "Web" is set as the startup p
 ```
 Add-Migration InitialCreate -Context WatchWorldContext -OutputDir Data/Migrations
 Update-Database -Context WatchWorldContext
+
+Add-Migration InitialIdentity -Context AppIdentityDbContext -OutputDir Identity/Migrations
+Update-Database -Context AppIdentityDbContext
 ```
