@@ -53,6 +53,11 @@ namespace Infrastructure.Data
            return await _db.Set<T>().ToListAsync(specification);
         }
 
+        public async Task<List<T>> GetAllAsync()
+        {
+            return await _db.Set<T>().ToListAsync();
+        }
+
         public async Task<T?> GetByIdAsync(int id)
         {
             return await _db.FindAsync<T>(id);
@@ -62,6 +67,16 @@ namespace Infrastructure.Data
         {
             _db.Update(entity);
             await _db.SaveChangesAsync();
+        }
+
+        Task<List<T>> IRepository<T>.AddAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<T> IRepository<T>.CountAsync(ISpecification<T> specification)
+        {
+            throw new NotImplementedException();
         }
     }
 }
