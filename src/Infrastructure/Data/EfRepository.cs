@@ -3,11 +3,6 @@ using ApplicationCore.Interfaces;
 using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Data
 {
@@ -43,14 +38,14 @@ namespace Infrastructure.Data
             return await _db.Set<T>().WithSpecification(specification).FirstAsync();
         }
 
-        public async Task<T?> FirstOrDefaultAsync(ISpecification<T> specification)
+        public async Task<T?> FirstorDefaultAsync(ISpecification<T> specification)
         {
             return await _db.Set<T>().WithSpecification(specification).FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> GetAllAsync(ISpecification<T> specification)
         {
-           return await _db.Set<T>().ToListAsync(specification);
+            return await _db.Set<T>().ToListAsync(specification);
         }
 
         public async Task<List<T>> GetAllAsync()
@@ -67,16 +62,6 @@ namespace Infrastructure.Data
         {
             _db.Update(entity);
             await _db.SaveChangesAsync();
-        }
-
-        Task<List<T>> IRepository<T>.AddAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<T> IRepository<T>.CountAsync(ISpecification<T> specification)
-        {
-            throw new NotImplementedException();
         }
     }
 }
