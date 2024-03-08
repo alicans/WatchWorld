@@ -10,7 +10,7 @@ namespace Web.Extensions
             return new BasketViewModel()
             {
                 Id = basket.Id,
-                BuyerId = BuyerId,
+                BuyerId = basket.BuyerId,
                 Items = basket.Items.Select(x => new BasketItemViewModel()
                 {
                     Id = x.Id,

@@ -45,7 +45,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                     @p.Price.ToString("c2")
-                    <a href="#" class="btn btn-sm btn-success">
+                    <a href="#" data-add-item="@p.Id" class="btn btn-sm btn-success">
                         <i class="fa-solid fa-cart-plus"></i>
                     </a>
                 </div>
@@ -114,22 +114,17 @@
     </ul>
 </nav>
 
+@section Scripts {
+    <script>
+        $("[data-add-item]").click(function (e) {
+            e.preventDefault();
+            const productId = $(this).data("add-item");
+            const url = "@Url.Action("AddItem", "Basket")";
 
-@* <p>
-    @Model.PaginationInfo.PageId nolu sayfadayız.
-    @Model.PaginationInfo.TotalPages toplam sayfa vardır
-    @Model.PaginationInfo.TotalItems toplam öğe vardır
-    @Model.PaginationInfo.ItemsOnPage öğe gösteriliyor
-    @(Model.PaginationInfo.HasPrevious ? "Öncesi vardır." : "Öncesi yoktur.")
-    @(Model.PaginationInfo.HasNext ? "sonrası vardır" : "sonrası yoktur")
-</p> *@
+            $.post(url, { productId }).then(data => {
+                console.log(data);
+            });
 
-
-@* @foreach (var p in Model.CatalogItems)
-{
-    <p>
-        <img src="~/img/products/@p.PictureUri" height="24" alt="product" />
-        @p.Id @p.Name @p.Price
-    </p>
+        })
+    </script>
 }
- *@
