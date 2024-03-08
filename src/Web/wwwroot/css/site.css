@@ -38,4 +38,8 @@ body {
     overflow: hidden;
 }
 
+.number-input > .quantity {
+    width: 70px;
+}
+
 

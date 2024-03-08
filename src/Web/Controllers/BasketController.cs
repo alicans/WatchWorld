@@ -18,5 +18,12 @@ namespace Web.Controllers
             var basket = await _basketViewModelService.AddItemToBasketAsync(productId, quantity);
             return Json(basket);
         }
+
+        public async Task<IActionResult> Index()
+        {
+            var basket = await _basketViewModelService.GetBasketViewModelAsync();
+            return View(basket);
+        }
+
     }
 }
