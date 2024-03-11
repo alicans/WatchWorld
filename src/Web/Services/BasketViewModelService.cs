@@ -64,5 +64,12 @@ namespace Web.Services
             var basket = await _basketService.SetQuantitiesAsync(BuyerId, quantities);
             return basket.ToBasketViewModel();
         }
+
+        public async Task TransferBasketAsync()
+        {
+            if (AnonId == null || UserId == null) return;
+            await _basketService.TransferBasketAsync(AnonId, UserId);
+            HttpContext.Response.Cookies.Delete(Constants.BASKET_COOKIE);
+        }
     }
 }
