@@ -25,5 +25,30 @@ namespace Web.Controllers
             return View(basket);
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Empty()
+        {
+            await _basketViewModelService.EmptyBasketAsync();
+            TempData["Message"] = "Your basket is now empty.";
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveItem(int productId)
+        {
+            await _basketViewModelService.RemoveItemAsync(productId);
+            TempData["Message"] = "Item removed from your cart.";
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update([ModelBinder(Name = "quantities")] Dictionary<int, int> quantities)
+        {
+            //görev: basketviewmodelservice'de setquantitiesasync metodu oluşturulacak ve
+            // bildirim mesajı tanımlanacak
+            await _basketViewModelService.SetQuantitiesAsync(quantities);
+            TempData["Message"] = "Cart updated successfully.";
+            return RedirectToAction("Index");
+        }
     }
 }
