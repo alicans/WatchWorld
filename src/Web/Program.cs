@@ -22,6 +22,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped<IBasketService, BasketService>();
 builder.Services.AddScoped<IHomeViewModelService, HomeViewModelService>();
 builder.Services.AddScoped<IBasketViewModelService, BasketViewModelService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
