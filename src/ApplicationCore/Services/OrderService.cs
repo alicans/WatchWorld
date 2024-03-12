@@ -18,7 +18,7 @@ namespace ApplicationCore.Services
         {
             var basket = await _basketService.GetOrCreateBasketAsync(buyerId);
 
-            //todo: must throw exception if basket is empty
+            // todo: must throw exception if basket is empty
 
             Order order = new Order()
             {
@@ -27,9 +27,9 @@ namespace ApplicationCore.Services
                 Items = basket.Items.Select(x => new OrderItem()
                 {
                     ProductId = x.ProductId,
+                    Quantity = x.Quantity,
                     ProductName = x.Product.Name,
                     UnitPrice = x.Product.Price,
-                    Quantity = x.Quantity,
                     PictureUri = x.Product.PictureUri
                 }).ToList()
             };
