@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Entities;
+using ApplicationCore.Exceptions;
 using ApplicationCore.Interfaces;
 
 namespace ApplicationCore.Services
@@ -19,6 +20,10 @@ namespace ApplicationCore.Services
             var basket = await _basketService.GetOrCreateBasketAsync(buyerId);
 
             // todo: must throw exception if basket is empty
+            if(basket.Items.Count == 0)
+            {
+                throw new EmptyBasketException();
+            }
 
             Order order = new Order()
             {
