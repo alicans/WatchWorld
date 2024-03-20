@@ -19,7 +19,7 @@ A sample N-layered .NET Core Project Demonstrating Clean Architecture and the Ge
 - Microsoft.EntityFrameworkCore.Design
 
 ### UnitTests
-...
+- NSubstitute
 
 ## Migrations
 
